@@ -4,15 +4,14 @@ const bodyEl = document.querySelector('body');
 
 startEl.addEventListener('click', onStartRundomColorForBody);
 stopEl.addEventListener('click', onStopRundomColor);
+stopEl.disabled = true;
 
 let timerId = null;
-let isActive = false;
 
 function onStartRundomColorForBody() {
-  if (isActive) {
-    return;
-  }
-  isActive = true;
+  startEl.disabled = true;
+  stopEl.disabled = false;
+
   addsRundomColorForBody();
 
   timerId = setInterval(addsRundomColorForBody, 1000);
@@ -20,7 +19,8 @@ function onStartRundomColorForBody() {
 
 function onStopRundomColor() {
   clearTimeout(timerId);
-  isActive = false;
+  startEl.disabled = false;
+  stopEl.disabled = true;
 }
 
 function getRandomHexColor() {
