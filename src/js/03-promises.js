@@ -36,6 +36,7 @@ function createPromise(position, delay) {
 
       if (amountCounter > AMOUNT) {
         btnEl.disabled = false;
+        console.log(1);
 
         return;
       }
