@@ -10,95 +10,54 @@ const dataMinutes = document.querySelector('[data-minutes]');
 const dataSeconds = document.querySelector('[data-seconds]');
 
 btnStart.addEventListener('click', onStartCountdown);
-inputEl.addEventListener('click', onAddsDateBefore);
+inputEl.addEventListener('focus', onAddsDateBefore);
+
 btnStart.disabled = true;
-
-// btnStart.setAttribute('disabled', true);
-
-// function onStrop() {
-//   if (
-//     dataDays.value === 0 &&
-//     dataHours.value === 0 &&
-//     dataMinutes.value === 0 &&
-//     dataSeconds.value === 0
-//   ) {
-//     return;
-//   }
-// }
-
-const dateNow = Date.now();
-const date = new Date();
-
-// inputEl.value = date;
-
-// if (new Date(inputEl.value).getTime() <= dateNow) {
-//   btnStart.disabled = true;
-// } else {
-//   btnStart.disabled = false;
-// }
-
-// inputEl.value = new Date();
-
-let isActive = false;
+inputEl.value = new Date().toString().slice(0, 21);
 
 function onAddsDateBefore() {
   const options = {
-    // clickOpens: true,
-    allowInput: true,
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
+    dateFormat: 'D M d Y H:i',
     minuteIncrement: 1,
     onClose(selectedDates) {
-      console.log(selectedDates[0]);
+      if (selectedDates[0] <= new Date()) {
+        Notiflix.Notify.failure('Please choose a date in the future');
+        btnStart.disabled = true;
+      } else {
+        Notiflix.Notify.success('You can start the timer!');
+        btnStart.disabled = false;
+      }
     },
   };
-
-  // onAddsDateBefore();
-
-  if (new Date(inputEl.value).getTime() <= dateNow) {
-    btnStart.disabled = true;
-  } else {
-    btnStart.disabled = false;
-  }
-
   flatpickr(inputEl, options);
-
-  console.log('Click INPUT');
 }
 
 function onStartCountdown() {
   const dateInput = new Date(inputEl.value).getTime();
-  // let intervalId = null;
 
-  if (dateInput <= dateNow) {
-    Notiflix.Notify.failure('Qui timide rogat docet negare');
-    btnStart.disabled = true;
-  } else {
-    // btnStart.getAttribute('disabled');
-    const intervalId = setInterval(() => {
-      const dateNow = Date.now();
-      const deltaTime = dateInput - dateNow;
-      const { days, hours, minutes, seconds } = convertMs(deltaTime);
-      console.log(`${days}:${hours}:${minutes}:${seconds}`);
-      dataDays.innerHTML = `${days}`;
-      dataHours.innerHTML = `${hours}`;
-      dataMinutes.innerHTML = `${minutes}`;
-      dataSeconds.innerHTML = `${seconds}`;
-      // btnStart.disabled = false;
-      if (dateInput - Date.now() === 0) {
-        clearInterval(intervalId);
-        // btnStart.disabled = true;
-        return;
-      }
-    }, 1000);
+  const intervalId = setInterval(() => {
+    const deltaTime = dateInput - Date.now();
+    const { days, hours, minutes, seconds } = convertMs(deltaTime);
+    dataDays.innerHTML = `${days}`;
+    dataHours.innerHTML = `${hours}`;
+    dataMinutes.innerHTML = `${minutes}`;
+    dataSeconds.innerHTML = `${seconds}`;
 
-    isActive = true;
+    if (dateInput - Date.now() < 1) {
+      clearInterval(intervalId);
 
-    Notiflix.Notify.success('Sol lucet omnibus');
-  }
-
-  console.log('Click on Start');
+      return (
+        (dataDays.innerHTML = '00'),
+        (dataHours.innerHTML = '00'),
+        (dataMinutes.innerHTML = '00'),
+        (dataSeconds.innerHTML = '00')
+      );
+    }
+  }, 1000);
+  btnStart.disabled = true;
 }
 
 function addLeadingZero(val) {

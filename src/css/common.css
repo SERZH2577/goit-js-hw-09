@@ -36,13 +36,13 @@ input {
   margin-bottom: 10px;
   font-size: 18px;
   font-weight: bold;
-  width: 165px;
+  width: 175px;
 }
 
 label {
   display: block;
   /* font-size: 18px; */
-  font-weight: bold;
+  font-weight: 400;
   /* color: #999; */
 }
 
@@ -52,35 +52,38 @@ label {
   font-size: 18px;
   font-weight: bold;
   margin-left: 20px;
-  width: 200px;
+  width: 330px;
 }
 
 button {
-  padding: 5px 10px;
+  padding: 5px 20px;
+  margin-top: 10px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 [data-start] {
   padding: 10px 20px 10px 20px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 [data-stop] {
   padding: 10px 20px 10px 20px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .value {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bold;
   text-align: center;
+  color: rgb(49, 49, 49);
 }
 
 .label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #999;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(88, 88, 88);
+  text-transform: uppercase;
 }
