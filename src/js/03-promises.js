@@ -4,7 +4,7 @@ const btnCreatePromises = document.querySelector('.form');
 const btnEl = document.querySelector('button');
 
 btnCreatePromises.addEventListener('submit', onSubmit);
-btnEl.disabled = false;
+// btnEl.disabled = false;
 
 let amountCounter = 1;
 
