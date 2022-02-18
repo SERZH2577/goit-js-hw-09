@@ -10,30 +10,26 @@ const dataMinutes = document.querySelector('[data-minutes]');
 const dataSeconds = document.querySelector('[data-seconds]');
 
 btnStart.addEventListener('click', onStartCountdown);
-inputEl.addEventListener('focus', onAddsDateBefore);
 
 btnStart.disabled = true;
-inputEl.value = new Date().toString().slice(0, 21);
 
-function onAddsDateBefore() {
-  const options = {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    dateFormat: 'D M d Y H:i',
-    minuteIncrement: 1,
-    onClose(selectedDates) {
-      if (selectedDates[0] <= new Date()) {
-        Notiflix.Notify.failure('Please choose a date in the future');
-        btnStart.disabled = true;
-      } else {
-        Notiflix.Notify.success('You can start the timer!');
-        btnStart.disabled = false;
-      }
-    },
-  };
-  flatpickr(inputEl, options);
-}
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  dateFormat: 'Y.m.d / H:i',
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    if (selectedDates[0] <= new Date()) {
+      Notiflix.Notify.failure('Please choose a date in the future');
+      btnStart.disabled = true;
+    } else {
+      Notiflix.Notify.success('You can start the timer!');
+      btnStart.disabled = false;
+    }
+  },
+};
+flatpickr(inputEl, options);
 
 function onStartCountdown() {
   const dateInput = new Date(inputEl.value).getTime();

@@ -22,7 +22,7 @@ img {
 }
 
 .field {
-  margin: 20px;
+  margin: 10px 20px;
   text-align: center;
 }
 
@@ -49,40 +49,38 @@ label {
 #datetime-picker {
   display: inline-block;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   margin-left: 20px;
-  width: 330px;
+  width: 218px;
 }
 
 button {
   padding: 5px 20px;
   margin-top: 10px;
   font-size: 18px;
-  font-weight: 400;
 }
 
 [data-start] {
-  padding: 10px 20px 10px 20px;
-  font-size: 18px;
-  font-weight: 400;
+  padding: 10px 20px;
+  font-size: 20px;
 }
 
 [data-stop] {
-  padding: 10px 20px 10px 20px;
-  font-size: 18px;
+  padding: 10px 20px;
+  font-size: 20px;
   font-weight: 400;
 }
 
 .value {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
   color: rgb(49, 49, 49);
 }
 
 .label {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   color: rgb(88, 88, 88);
   text-transform: uppercase;
